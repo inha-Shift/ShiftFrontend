@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import 'assets/stylesheets/auth.css';
+import 'assets/stylesheets/common.css';
+import URL from 'utils/url';
+
+import Login from 'pages/auth/login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Shift
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Join Shift
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+				{/* <Header /> */}
+				<Routes>
+					<Route path={URL.MAIN} element={<Login />}></Route>
+					<Route path={URL.LOGIN} element={<Login />}></Route>
+				</Routes>
+			</BrowserRouter>
   );
 }
 
