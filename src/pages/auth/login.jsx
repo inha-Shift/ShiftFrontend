@@ -22,7 +22,10 @@ export default function Login() {
     const handleSignUp = useCallback(() => {
         const reqestURL = 'api/auth/signUp'; // 회원가입 API
         axios
-            .post(reqestURL, signUpData)
+            .post(reqestURL, signUpData, {
+                headers: { "Content-Type": 'application/json'}
+                }
+            ) 
             .then( // 회원가입 성공
                 (res) => {
                     console.log(res);
