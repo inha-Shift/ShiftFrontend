@@ -14,15 +14,18 @@ export default function Login() {
         nickname: '',
         stdntNum: '',
         email: '',
-        loginPwd: '',
-        confirmLoginPwd: ''
+        password: '',
+        confirmPassword: ''
     });
 
     // 로그인 수행
     const handleSignUp = useCallback(() => {
         const reqestURL = 'api/auth/signUp'; // 회원가입 API
         axios
-            .post(reqestURL, signUpData)
+            .post(reqestURL, signUpData, {
+                headers: { "Content-Type": 'application/json'}
+                }
+            ) 
             .then( // 회원가입 성공
                 (res) => {
                     console.log(res);
@@ -52,10 +55,10 @@ export default function Login() {
                         <input onChange={(e) => setSignUpData((prev) => ({...prev, email: e.target.value}))} defaultValue={signUpData.email} type="email" placeholder="*학번"/>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, loginPwd: e.target.value}))} defaultValue={signUpData.loginPwd} type="password" placeholder="*비밀번호"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, password: e.target.value}))} defaultValue={signUpData.password} type="password" placeholder="*비밀번호"/>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, confirmLoginPwd: e.target.value}))} defaultValue={signUpData.confirmLoginPwd} type="password" placeholder="*비밀번호 확인"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, confirmPassword: e.target.value}))} defaultValue={signUpData.confirmPassword} type="password" placeholder="*비밀번호 확인"/>
                     </div>
                     <button onClick={() => handleSignUp()} className="default-button">회원가입</button>
                     <p>
