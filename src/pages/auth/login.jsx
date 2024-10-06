@@ -20,10 +20,15 @@ export default function Login() {
 
     // 로그인 수행
     const handleSignUp = useCallback(() => {
-        const reqestURL = 'api/auth/signUp'; // 회원가입 API
+        const reqestURL = '/api/auth/signUp'; // 회원가입 API
         axios
-            .post(reqestURL, signUpData, {
-                headers: { "Content-Type": 'application/json'}
+            .post(reqestURL, {
+                nickname: signUpData.nickname,
+                stdntNum: signUpData.stdntNum,
+                email: signUpData.email,
+                password: signUpData.password,
+            }, {
+                headers: { 'Content-Type': 'application/json'}
                 }
             ) 
             .then( // 회원가입 성공
