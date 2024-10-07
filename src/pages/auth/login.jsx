@@ -1,22 +1,37 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import URL from 'utils/url';
+import nicknameData from "assets/jsons/nicknameData.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login() {
     const navigate = useNavigate();
 
     // 로그인인지, 회원가입인지 체크하는 변수
     const [displayType, setDisplayType] = useState('sign-in');
+    // 추천 닉네임을 위한 변수
+    const [recomNickname, setRecomNickname] = useState('');
     // 회원가입에 필요한 정보
     const [signUpData, setSignUpData] = useState({
-        nickname: '',
+        nickname: recomNickname,
         stdntNum: '',
         email: '',
         password: '',
         confirmPassword: ''
     });
+
+    // 닉네임 생성
+    const generateNickname = () => {
+        // 형용사
+        const nicknameAdjective = nicknameData.adjectives[Math.floor(Math.random() * nicknameData.adjectives.length)];
+        // 동물 이름
+        const nicknameAnimal = nicknameData.animals[Math.floor(Math.random() * nicknameData.animals.length)];    
+        // 추천 닉네임 수정
+        setRecomNickname(nicknameAdjective + nicknameAnimal);
+    }
 
     // 로그인 수행
     const handleSignUp = useCallback(() => {
@@ -30,7 +45,7 @@ export default function Login() {
             }, {
                 headers: { 'Content-Type': 'application/json'}
                 }
-            ) 
+            )
             .then( // 회원가입 성공
                 (res) => {
                     console.log(res);
@@ -42,6 +57,12 @@ export default function Login() {
             )
     }, [signUpData]);
 
+    // 초기 로딩, 추천 닉네임이 바뀌었을 때 실행
+    useEffect(() => {
+        // 회원가입 정보의 닉네임 갱신
+        setSignUpData((prev) => ({...prev, nickname: recomNickname}));
+    }, [recomNickname]);
+
     return(
         <div id="container" className={`container ${displayType}`}>
         {/* <!-- FORM SECTION --> */}
@@ -51,19 +72,20 @@ export default function Login() {
                 <div className="form-wrapper align-items-center">
                 <div className="form sign-up">
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, nickname: e.target.value}))} defaultValue={signUpData.nickname} type="text" placeholder="*닉네임"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, nickname: e.target.value}))} value={signUpData.nickname} maxLength={10} className="nickname" type="text" placeholder="*닉네임"/>
+                        <button onClick={() => generateNickname()} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, stdntNum: e.target.value}))} defaultValue={signUpData.stdntNum} type="email" placeholder="*학번"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, stdntNum: e.target.value}))} value={signUpData.stdntNum} type="email" placeholder="*학번"/>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, email: e.target.value}))} defaultValue={signUpData.email} type="email" placeholder="*학번"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, email: e.target.value}))} value={signUpData.email} type="email" placeholder="*이메일"/>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, password: e.target.value}))} defaultValue={signUpData.password} type="password" placeholder="*비밀번호"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, password: e.target.value}))} value={signUpData.password} type="password" placeholder="*비밀번호"/>
                     </div>
                     <div className="input-group">
-                        <input onChange={(e) => setSignUpData((prev) => ({...prev, confirmPassword: e.target.value}))} defaultValue={signUpData.confirmPassword} type="password" placeholder="*비밀번호 확인"/>
+                        <input onChange={(e) => setSignUpData((prev) => ({...prev, confirmPassword: e.target.value}))} value={signUpData.confirmPassword} type="password" placeholder="*비밀번호 확인"/>
                     </div>
                     <button onClick={() => handleSignUp()} className="default-button">회원가입</button>
                     <p>

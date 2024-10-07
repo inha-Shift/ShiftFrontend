@@ -93,6 +93,10 @@ body {
     border: 0.125rem solid var(--primary-color);
 }
 
+.input-group input.nickname {
+    width: 83%;
+}
+
 .form .default-button {
     cursor: pointer;
     width: 100%;
@@ -280,6 +284,18 @@ body {
 
 .form .oauth-group button {
     margin-bottom: 1rem;
+}
+
+.form .refresh-nickname-button {
+        margin-left: 1rem;
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 1.2rem;
+        outline: none;
 }
 
 .form .oauth-group .naver-login-button {
