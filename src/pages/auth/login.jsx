@@ -28,6 +28,11 @@ export default function Login() {
         password: '',
         confirmPassword: ''
     });
+    // 로그인에 필요한 정보
+    const [signInData, setSignInData] = useState({
+        email: '',
+        password: '',
+    });
 
     // 로그인 <-> 회원가입 이동 핸들러
     const handleAuthTypeToggle = (type) => {
@@ -170,6 +175,27 @@ export default function Login() {
         setSignUpData((prev) => ({...prev, nickname: recomNickname}));
     }, [recomNickname]);
     
+    // 로그인 수행
+    const handleSignIn = useCallback(() => {
+        const reqestURL = '/api/auth/signIn';
+        axios
+            .post(reqestURL, {
+                email: signInData.email,
+                password: signInData.password,
+            }, {
+                headers: { 'Content-Type': 'application/json'}
+                }
+            )
+            .then( // 로그인 성공
+                (res) => {
+                    console.log(res);
+                    setDisplayType('sign-in');
+                }
+            )
+            .catch( // 로그인 실패
+                (err) => { console.error('로그인에 실패하였습니다.', err); }
+            )
+    }, [signInData]);
 
     return(
         <div id="container" className={`container ${displayType}`}>
@@ -226,13 +252,13 @@ export default function Login() {
                     <div className="form sign-in">
                         <div className="input-group">
                             <i className='bx bxs-user'></i>
-                            <input type="text" placeholder="아이디"/>
+                            <input onChange={(e) => setSignInData((prev) => ({...prev, email: e.target.value}))} value={signInData.email} type="text" placeholder="아이디"/>
                         </div>
                         <div className="input-group">
                             <i className='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="비밀번호"/>
+                            <input onChange={(e) => setSignInData((prev) => ({...prev, password: e.target.value}))} value={signInData.password} type="password" placeholder="비밀번호"/>
                         </div>
-                        <button className="default-button">로그인</button>
+                        <button onClick={() => handleSignIn()} className="default-button">로그인</button>
                         <p>
                             <b onClick={() => navigate(URL.AUTH_FIND_ID)} className="pointer">아이디 찾기</b>
                             <b onClick={() => navigate(URL.AUTH_FIND_PW)} className="pointer v-separator">비밀번호 찾기</b>
@@ -243,7 +269,7 @@ export default function Login() {
                         </div>
                         <p>
                             <span>계정이 없으신가요?</span>&nbsp;
-                            <b onClick={() => handleAuthTypeToggle('sign-up')} className="pointer">회원가입 하러 가기!</b>
+                            <b onClick={() => setDisplayType('sign-up')} className="pointer">회원가입 하러 가기!</b>
                         </p>
                     </div>
                 </div>
