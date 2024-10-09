@@ -5,6 +5,7 @@
     --white: #ffffff;
     --gray: #efefef;
     --gray-2: #757575;
+    --gray-3: #c0c0c0;
 
     --facebook-color: #4267B2;
     --google-color: #DB4437;
@@ -89,12 +90,24 @@ body {
     outline: none;
 }
 
+.input-group input:disabled {
+    background-color: var(--gray-3);
+}
+
 .input-group input:focus {
     border: 0.125rem solid var(--primary-color);
 }
 
 .input-group input.nickname {
     width: 83%;
+}
+
+.input-group input.email {
+    width: 60%;
+}
+
+.input-group input.confirm-email {
+    width: 79%;
 }
 
 .form .default-button {
@@ -294,6 +307,30 @@ body {
         border: none;
         background-color: var(--primary-color);
         color: var(--white);
+        font-size: 1.2rem;
+        outline: none;
+}
+
+.form .confirm-email-button {
+        margin-left: 1rem;
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 1.2rem;
+        outline: none;
+}
+
+.form .disabled-button {
+        margin-left: 1rem;
+        cursor: unset;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--gray-3);
+        color: var(--black);
         font-size: 1.2rem;
         outline: none;
 }

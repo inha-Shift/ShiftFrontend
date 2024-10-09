@@ -11,7 +11,7 @@ function App() {
 				{/* <Header /> */}
 				<Routes>
 					<Route path={URL.MAIN} element={<Login />}></Route>
-					<Route path={URL.LOGIN} element={<Login />}></Route>
+					<Route path={URL.AUTH_LOGIN} element={<Login />}></Route>
 				</Routes>
 			</BrowserRouter>
   );
