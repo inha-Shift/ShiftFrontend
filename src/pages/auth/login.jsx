@@ -31,14 +31,17 @@ export default function Login() {
     // 로그인에 필요한 정보
     const [signInData, setSignInData] = useState({
         email: '',
-        password: '',
+        password: ''
     });
 
     // 로그인 <-> 회원가입 이동 핸들러
     const handleAuthTypeToggle = (type) => {
         setDisplayType(type);
         // 모든 입력값 초기화
-        // 로그인 정보도 초기화 해야 함.
+        setSignInData({
+            email: '',
+            password: ''
+        });
         setRecomNickname('');
         setIsSendEmail(false);
         setIsConfirmedEmail(false);
@@ -51,6 +54,28 @@ export default function Login() {
             confirmPassword: ''
         });
     }
+    
+    // 로그인 수행
+    const handleSignIn = useCallback(() => {
+        const reqestURL = '/api/auth/signIn';
+        axios
+        .post(reqestURL, {
+                email: signInData.email,
+                password: signInData.password,
+            }, {
+                headers: { 'Content-Type': 'application/json'}
+            }
+        )
+        .then( // 로그인 성공
+            (res) => {
+                // 메인 페이지로 이동
+                res.status === 200 && navigate(URL.MAIN);
+            }
+        )
+        .catch( // 로그인 실패
+            (err) => { console.error('로그인에 실패하였습니다.', err); }
+        )
+    }, [signInData]);
 
     // 닉네임 생성
     const generateNickname = () => {
@@ -161,6 +186,7 @@ export default function Login() {
             )
             .then( // 회원가입 성공
                 (res) => {
+                    alert('축하드립니다. 회원가입에 성공하셨습니다!');
                     setDisplayType('sign-in');
                 }
             )
@@ -175,28 +201,6 @@ export default function Login() {
         setSignUpData((prev) => ({...prev, nickname: recomNickname}));
     }, [recomNickname]);
     
-    // 로그인 수행
-    const handleSignIn = useCallback(() => {
-        const reqestURL = '/api/auth/signIn';
-        axios
-            .post(reqestURL, {
-                email: signInData.email,
-                password: signInData.password,
-            }, {
-                headers: { 'Content-Type': 'application/json'}
-                }
-            )
-            .then( // 로그인 성공
-                (res) => {
-                    console.log(res);
-                    setDisplayType('sign-in');
-                }
-            )
-            .catch( // 로그인 실패
-                (err) => { console.error('로그인에 실패하였습니다.', err); }
-            )
-    }, [signInData]);
-
     return(
         <div id="container" className={`container ${displayType}`}>
         {/* <!-- FORM SECTION --> */}
@@ -252,7 +256,7 @@ export default function Login() {
                     <div className="form sign-in">
                         <div className="input-group">
                             <i className='bx bxs-user'></i>
-                            <input onChange={(e) => setSignInData((prev) => ({...prev, email: e.target.value}))} value={signInData.email} type="text" placeholder="아이디"/>
+                            <input onChange={(e) => setSignInData((prev) => ({...prev, email: e.target.value}))} value={signInData.email} type="email" placeholder="아이디(이메일)"/>
                         </div>
                         <div className="input-group">
                             <i className='bx bxs-lock-alt'></i>

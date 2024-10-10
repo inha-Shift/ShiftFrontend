@@ -3,17 +3,18 @@ import 'assets/stylesheets/auth.css';
 import 'assets/stylesheets/common.css';
 import URL from 'utils/url';
 
-import Login from 'pages/auth/login';
+import Main from 'pages/home/Main';
+import Login from 'pages/auth/Login';
 
 function App() {
   return (
-    <BrowserRouter>
-				{/* <Header /> */}
-				<Routes>
-					<Route path={URL.MAIN} element={<Login />}></Route>
-					<Route path={URL.AUTH_LOGIN} element={<Login />}></Route>
-				</Routes>
-			</BrowserRouter>
+    <BrowserRouter basename={URL.MAIN}>
+		{/* <Header /> */}
+		<Routes>
+			<Route index path={URL.MAIN} element={<Main />}></Route>
+			<Route path={URL.AUTH_SIGN} element={<Login />}></Route>
+		</Routes>
+	</BrowserRouter>
   );
 }
 
