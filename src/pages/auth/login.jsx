@@ -63,7 +63,7 @@ export default function Login() {
                 email: signInData.email,
                 password: signInData.password,
             }, {
-                headers: { 'Content-Type': 'application/json'}
+                headers: { 'Content-Type': 'application/json' }
             }
         )
         .then( // 로그인 성공
@@ -273,7 +273,7 @@ export default function Login() {
                         </div>
                         <p>
                             <span>계정이 없으신가요?</span>&nbsp;
-                            <b onClick={() => setDisplayType('sign-up')} className="pointer">회원가입 하러 가기!</b>
+                            <b onClick={() => handleAuthTypeToggle('sign-up')} className="pointer">회원가입 하러 가기!</b>
                         </p>
                     </div>
                 </div>
