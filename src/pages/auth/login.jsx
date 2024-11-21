@@ -124,6 +124,7 @@ export default function Login() {
     
     // 이메일 인증코드 전송
     const sendEmailConfirmNum = () => {
+        setIsSendEmail(true);
         const reqestURL = '/api/auth/sendEmailConfirmNum';
         axios
             .post(reqestURL, {
@@ -134,14 +135,13 @@ export default function Login() {
             )
             .then( // 인증코드 전송 성공
                 (res) => {
-                    setIsSendEmail(true);
                 }
             )
             .catch( // 인증코드 전송 실패
-                (err) => { 
-                    setIsSendEmail(false);
-                    alert('인증코드 전송에 실패했습니다. 유효한 메일인지 확인해주세요.'); 
-                }
+            //     (err) => { 
+            //         setIsSendEmail(false);
+            //         alert('인증코드 전송에 실패했습니다. 유효한 메일인지 확인해주세요.'); 
+            //     }
             )
     };
 
