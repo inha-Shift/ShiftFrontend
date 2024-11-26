@@ -295,8 +295,12 @@ body {
     vertical-align: top;
 }
 
-.form .oauth-group button {
-    margin-bottom: 1rem;
+.form .oauth-group {
+    display: flex;
+    flex-direction: row; /* 자식 요소를 가로로 정렬 */
+    justify-content: center; /* 가로 방향에서 가운데 정렬 */
+    align-items: center; /* 세로 방향에서 가운데 정렬 */
+    gap: 1rem; 
 }
 
 .form .refresh-nickname-button {
@@ -335,28 +339,31 @@ body {
         outline: none;
 }
 
-.form .oauth-group .naver-login-button {
+.form .oauth-group .oauth-button {
+    border: 0;
+    background-color: transparent;
     cursor: pointer;
-    width: 100%;
-    padding: .6rem 0;
-    border-radius: .5rem;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-size: 1.2rem;
-    outline: none;
 }
 
-.form .oauth-group .kakao-login-button {
-    cursor: pointer;
-    width: 100%;
-    padding: .6rem 0;
-    border-radius: .5rem;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-size: 1.2rem;
-    outline: none;
+.form .oauth-group .oauth-button .naver-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
+}
+
+.form .oauth-group .oauth-button .google-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
+}
+
+.form .oauth-group .oauth-button .kakao-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
 }
 
 /* RESPONSIVE */

@@ -7,6 +7,10 @@ import nicknameData from "assets/jsons/nicknameData.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
+import naverLoginButton from '../../assets/image/naverLoginButton.png';
+import googleLoginButton from '../../assets/image/googleLoginButton.png';
+import kakaoLoginButton from '../../assets/image/kakaoLoginButton.png';
+
 export default function Login() {
     const navigate = useNavigate();
 
@@ -76,6 +80,27 @@ export default function Login() {
             (err) => { console.error('로그인에 실패하였습니다.', err); }
         )
     }, [signInData]);
+
+    // 카카오 아이디로 로그인 수행
+    const handleKakaoSignIn = useCallback(() => {
+        const reqestURL = '/api/oauth2/authorization/kakao';
+        window.location.href = reqestURL;
+    })
+
+    // 네이버 아이디로 로그인 수행
+    const handleNaverSignIn = useCallback(() => {
+        const reqestURL = '/api/oauth2/authorization/naver';
+        window.location.href = reqestURL;
+    })
+
+    // 구글 아이디로 로그인 수행
+    const handleGoogleSignIn = useCallback(() => {
+        const reqestURL = '/api/oauth2/authorization/google';
+        window.location.href = reqestURL;
+    })
+
+
+
 
     // 닉네임 생성
     const generateNickname = () => {
@@ -267,9 +292,18 @@ export default function Login() {
                             <b onClick={() => navigate(URL.AUTH_FIND_ID)} className="pointer">아이디 찾기</b>
                             <b onClick={() => navigate(URL.AUTH_FIND_PW)} className="pointer v-separator">비밀번호 찾기</b>
                         </p>
+                        <p>소셜아이디로 로그인</p>
                         <div className="oauth-group">
-                            <button className="naver-login-button">네이버 로그인(임시)</button>
-                            <button className="kakao-login-button">카카오 로그인(임시)</button>
+                            <button onClick={() => handleKakaoSignIn()} className="oauth-button">
+                                <img className="kakao-login-button" src={kakaoLoginButton}></img>
+                            </button>
+                            <button onClick={() => handleNaverSignIn()} className="oauth-button">
+                                <img className="naver-login-button" src={naverLoginButton}></img>
+                            </button>
+                            <button onClick={() => handleGoogleSignIn()} className="oauth-button">
+                                <img className="google-login-button" src={googleLoginButton}></img>
+                            </button>
+                            
                         </div>
                         <p>
                             <span>계정이 없으신가요?</span>&nbsp;
