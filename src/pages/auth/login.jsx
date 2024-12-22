@@ -292,6 +292,7 @@ export default function Login() {
                             <b onClick={() => navigate(URL.AUTH_FIND_ID)} className="pointer">아이디 찾기</b>
                             <b onClick={() => navigate(URL.AUTH_FIND_PW)} className="pointer v-separator">비밀번호 찾기</b>
                         </p>
+                        {/* OAuth 로그인 */}
                         <p>소셜아이디로 로그인</p>
                         <div className="oauth-group">
                             <button onClick={() => handleKakaoSignIn()} className="oauth-button">

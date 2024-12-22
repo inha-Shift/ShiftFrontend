@@ -5,7 +5,7 @@ import URL from 'utils/url';
 
 import Main from 'pages/home/Main';
 import Login from 'pages/auth/Login';
-import OAuthMemberInfo from 'pages/auth/OAuthMemberInfo';
+import OAuthAdditionalInfo from 'pages/auth/OAuthAdditionalInfo';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 		<Routes>
 			<Route index path={URL.MAIN} element={<Main />}></Route>
 			<Route path={URL.AUTH_SIGN} element={<Login />}></Route>
-			<Route path={URL.AUTH_OAUTH_ADD_INFO} element={<OAuthMemberInfo />}></Route>
+			<Route path={URL.AUTH_OAUTH_ADD_INFO} element={<OAuthAdditionalInfo />}></Route>
 		</Routes>
 	</BrowserRouter>
   );

@@ -5,7 +5,7 @@ import nicknameData from "assets/jsons/nicknameData.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-export default function OAuthMemberInfo() {
+export default function OAuthAdditionalInfo() {
     const [recomNickname, setRecomNickname] = useState('');
     const [isSendEmail, setIsSendEmail] = useState(false);
     const [isConfirmedEmail, setIsConfirmedEmail] = useState(false);
@@ -122,7 +122,7 @@ export default function OAuthMemberInfo() {
     const handleSignUp = useCallback(() => {
         // 유효성 검증
         // validateSignUp();
-        const reqestURL = '/api/auth/signUp';
+        const reqestURL = '/api/auth/oauth/signUp';
         axios
             .post(reqestURL, {
                 nickname: signUpData.nickname,
@@ -156,6 +156,7 @@ export default function OAuthMemberInfo() {
                 <div className="col align-items-center flex-col sign-up">
                     <div className="form-wrapper align-items-center">
                         <div className="form sign-up">
+                            <h1>추가 정보를 입력해주세요</h1>
                             <div className="input-group">
                                 <input
                                     name="nickname" // 필드 이름 설정
@@ -171,7 +172,7 @@ export default function OAuthMemberInfo() {
                                     placeholder="*닉네임"
                                 />
                                 <button onClick={generateNickname} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
-                                {errors.nickname && <span className="error-text">{errors.nickname}</span>}
+                                {errors.nickname && <span className="text-warning">{errors.nickname}</span>}
                             </div>
                             <div className="input-group">
                                 <input
@@ -186,34 +187,36 @@ export default function OAuthMemberInfo() {
                                     type="text"
                                     placeholder="*학번"
                                 />
-                                {errors.stdntNum && <span className="error-text">{errors.stdntNum}</span>}
+                                {errors.stdntNum && <span className="text-warning">{errors.stdntNum}</span>}
                             </div>
                             <div className="input-group">
-                                <input
-                                    name="email"
-                                    onChange={(e) => {
-                                        const { name, value } = e.target;
-                                        setSignUpData((prev) => ({ ...prev, email: e.target.value }));
-                                        validateField(name, value);
-                                    }}
-                                    value={signUpData.email}
-                                    disabled={isSendEmail}
-                                    className="email"
-                                    type="text"
-                                    placeholder="*이메일 앞자리"
-                                />
-                                @inha.edu
-                                {isSendEmail
-                                    ? <button className="disabled-button">전송</button>
-                                    : <button onClick={sendEmailConfirmNum} className="confirm-email-button">전송</button>
-                                }
-                                {(isSendEmail && !isConfirmedEmail) &&
-                                    (<>
-                                        <input onChange={(e) => setConfirmEmailNum(e.target.value)} className="confirm-email" type="text" placeholder="*인증코드 입력" />
-                                        <button onClick={confirmEmail} className="confirm-email-button">인증</button>
-                                    </>)
-                                }
-                                {errors.email && <span className="error-text">{errors.email}</span>}
+                                <div>
+                                    <input
+                                        name="email"
+                                        onChange={(e) => {
+                                            const { name, value } = e.target;
+                                            setSignUpData((prev) => ({ ...prev, email: e.target.value }));
+                                            validateField(name, value);
+                                        }}
+                                        value={signUpData.email}
+                                        disabled={isSendEmail}
+                                        className="email"
+                                        type="text"
+                                        placeholder="*이메일 앞자리"
+                                    />
+                                    @inha.edu
+                                    {isSendEmail
+                                        ? <button className="disabled-button">전송</button>
+                                        : <button onClick={sendEmailConfirmNum} className="confirm-email-button">전송</button>
+                                    }
+                                    {(isSendEmail && !isConfirmedEmail) &&
+                                        (<>
+                                            <input onChange={(e) => setConfirmEmailNum(e.target.value)} className="confirm-email" type="text" placeholder="*인증코드 입력" />
+                                            <button onClick={confirmEmail} className="confirm-email-button">인증</button>
+                                        </>)
+                                    }
+                                </div>
+                                {errors.email && <span className="text-warning">{errors.email}</span>}
                             </div>
                             <div className="input-group">
                                 <input
@@ -227,7 +230,7 @@ export default function OAuthMemberInfo() {
                                     type="password"
                                     placeholder="*비밀번호"
                                 />
-                                {errors.password && <span className="error-text">{errors.password}</span>}
+                                {errors.password && <span className="text-warning">{errors.password}</span>}
                             </div>
                             <div className="input-group">
                                 <input
@@ -241,7 +244,6 @@ export default function OAuthMemberInfo() {
                                     type="password"
                                     placeholder="*비밀번호 확인"
                                 />
-                                {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
                                 {signUpData.password && ((signUpData.password === signUpData.confirmPassword)
                                     ? <span className="text-success">비밀번호가 일치합니다.</span>
                                     : <span className="text-warning">비밀번호가 일치하지 않습니다.</span>
