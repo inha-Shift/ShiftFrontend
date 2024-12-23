@@ -10,11 +10,11 @@ import OAuthAdditionalInfo from 'pages/auth/OAuthAdditionalInfo';
 
 function App() {
   return (
-    <BrowserRouter basename={URL.MAIN}>
+    <BrowserRouter>
 		{/* <Header /> */}
 		<Routes>
-			<Route index path={URL.MAIN} element={<Main />}></Route>
-			<Route path={URL.AUTH_SIGN} element={<Login />}></Route>
+			<Route path={URL.LOGIN} element={<Login />}></Route>
+			<Route path={URL.MAIN} element={<Main />}></Route>
 			<Route path={URL.AUTH_OAUTH_ADD_INFO} element={<OAuthAdditionalInfo />}></Route>
 		</Routes>
 	</BrowserRouter>
