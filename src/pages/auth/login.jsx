@@ -7,9 +7,18 @@ import nicknameData from "assets/jsons/nicknameData.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import naverLoginButton from '../../assets/image/naverLoginButton.png';
-import googleLoginButton from '../../assets/image/googleLoginButton.png';
-import kakaoLoginButton from '../../assets/image/kakaoLoginButton.png';
+import naverLoginButton from '../../assets/image/oauthLoginButton/naverLoginButton.png';
+import googleLoginButton from '../../assets/image/oauthLoginButton/googleLoginButton.png';
+import kakaoLoginButton from '../../assets/image/oauthLoginButton/kakaoLoginButton.png';
+
+// 닉네임 생성
+const generateNickname = () => {
+    // 형용사
+    const nicknameAdjective = nicknameData.adjectives[Math.floor(Math.random() * nicknameData.adjectives.length)];
+    // 동물 이름
+    const nicknameAnimal = nicknameData.animals[Math.floor(Math.random() * nicknameData.animals.length)];    
+    return nicknameAdjective + nicknameAnimal;
+};
 
 export default function Login() {
     const navigate = useNavigate();
@@ -99,18 +108,7 @@ export default function Login() {
         window.location.href = reqestURL;
     })
 
-
-
-
-    // 닉네임 생성
-    const generateNickname = () => {
-        // 형용사
-        const nicknameAdjective = nicknameData.adjectives[Math.floor(Math.random() * nicknameData.adjectives.length)];
-        // 동물 이름
-        const nicknameAnimal = nicknameData.animals[Math.floor(Math.random() * nicknameData.animals.length)];    
-        // 추천 닉네임 수정
-        setRecomNickname(nicknameAdjective + nicknameAnimal);
-    };
+    
 
     // 회원가입 유효성 검증
     const validateSignUp = () => {
@@ -193,6 +191,12 @@ export default function Login() {
             )
     };
 
+    const handleGenerateNickname = () => {
+        const newNickname = generateNickname();
+        setRecomNickname(newNickname); // React 상태 업데이트
+    };
+
+
     // 회원가입 수행
     const handleSignUp = useCallback(() => {
         // 유효성 검증
@@ -236,7 +240,7 @@ export default function Login() {
                 <div className="form sign-up">
                     <div className="input-group">
                         <input onChange={(e) => setSignUpData((prev) => ({...prev, nickname: e.target.value}))} value={signUpData.nickname} maxLength={10} className="nickname" type="text" placeholder="*닉네임"/>
-                        <button onClick={generateNickname} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
+                        <button onClick={handleGenerateNickname} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
                     </div>
                     <div className="input-group">
                         <input onChange={(e) => setSignUpData((prev) => ({...prev, stdntNum: e.target.value}))} value={signUpData.stdntNum} maxLength={8} type="text" placeholder="*학번"/>
@@ -340,3 +344,4 @@ export default function Login() {
         </div>
     );
 }
+export { generateNickname };

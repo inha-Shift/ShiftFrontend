@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { generateNickname } from './Login';
 import axios from 'axios';
 
 import nicknameData from "assets/jsons/nicknameData.json";
@@ -26,15 +27,20 @@ export default function OAuthAdditionalInfo() {
         confirmPassword: ''
     });
 
-    // 닉네임 생성
-    const generateNickname = () => {
-        // 형용사
-        const nicknameAdjective = nicknameData.adjectives[Math.floor(Math.random() * nicknameData.adjectives.length)];
-        // 동물 이름
-        const nicknameAnimal = nicknameData.animals[Math.floor(Math.random() * nicknameData.animals.length)];
-        // 추천 닉네임 수정
-        setRecomNickname(nicknameAdjective + nicknameAnimal);
+    const handleGenerateNickname = () => {
+        const newNickname = generateNickname();
+        setRecomNickname(newNickname); // React 상태 업데이트
     };
+
+    // // 닉네임 생성
+    // const generateNickname = () => {
+    //     // 형용사
+    //     const nicknameAdjective = nicknameData.adjectives[Math.floor(Math.random() * nicknameData.adjectives.length)];
+    //     // 동물 이름
+    //     const nicknameAnimal = nicknameData.animals[Math.floor(Math.random() * nicknameData.animals.length)];
+    //     // 추천 닉네임 수정
+    //     setRecomNickname(nicknameAdjective + nicknameAnimal);
+    // };
 
     const validateField = (name, value) => {
         let error = '';
@@ -171,7 +177,7 @@ export default function OAuthAdditionalInfo() {
                                     type="text"
                                     placeholder="*닉네임"
                                 />
-                                <button onClick={generateNickname} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
+                                <button onClick={handleGenerateNickname} className="refresh-nickname-button"><FontAwesomeIcon icon={faRotateRight} /></button>
                                 {errors.nickname && <span className="text-warning">{errors.nickname}</span>}
                             </div>
                             <div className="input-group">
