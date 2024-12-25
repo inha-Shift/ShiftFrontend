@@ -20,7 +20,7 @@ function App() {
 		<ToastContainer position="top-right" autoClose={3000} hideProgressBar />
 		<Routes>
 			<Route path={URL.MAIN} element={<Main />}></Route>
-			<Route path={URL.LOGIN} element={<Login />}></Route>
+			<Route path={URL.AUTH_SIGN} element={<Login />}></Route>
 			<Route path={URL.AUTH_OAUTH_ADD_INFO} element={<OAuthAdditionalInfo />}></Route>
 			<Route path={URL.UNIV_LIST} element={<UnivList />}></Route>
 		</Routes>
