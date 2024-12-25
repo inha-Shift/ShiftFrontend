@@ -5,6 +5,7 @@
     --white: #ffffff;
     --gray: #efefef;
     --gray-2: #757575;
+    --gray-3: #c0c0c0;
 
     --facebook-color: #4267B2;
     --google-color: #DB4437;
@@ -89,8 +90,24 @@ body {
     outline: none;
 }
 
+.input-group input:disabled {
+    background-color: var(--gray-3);
+}
+
 .input-group input:focus {
     border: 0.125rem solid var(--primary-color);
+}
+
+.input-group input.nickname {
+    width: 83%;
+}
+
+.input-group input.email {
+    width: 60%;
+}
+
+.input-group input.confirm-email {
+    width: 79%;
 }
 
 .form .default-button {
@@ -278,32 +295,75 @@ body {
     vertical-align: top;
 }
 
-.form .oauth-group button {
-    margin-bottom: 1rem;
+.form .oauth-group {
+    display: flex;
+    flex-direction: row; /* 자식 요소를 가로로 정렬 */
+    justify-content: center; /* 가로 방향에서 가운데 정렬 */
+    align-items: center; /* 세로 방향에서 가운데 정렬 */
+    gap: 1rem; 
 }
 
-.form .oauth-group .naver-login-button {
-    cursor: pointer;
-    width: 100%;
-    padding: .6rem 0;
-    border-radius: .5rem;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-size: 1.2rem;
-    outline: none;
+.form .refresh-nickname-button {
+        margin-left: 1rem;
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 1.2rem;
+        outline: none;
 }
 
-.form .oauth-group .kakao-login-button {
+.form .confirm-email-button {
+        margin-left: 1rem;
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 1.2rem;
+        outline: none;
+}
+
+.form .disabled-button {
+        margin-left: 1rem;
+        cursor: unset;
+        padding: 0.8rem 1rem;
+        border-radius: .5rem;
+        border: none;
+        background-color: var(--gray-3);
+        color: var(--black);
+        font-size: 1.2rem;
+        outline: none;
+}
+
+.form .oauth-group .oauth-button {
+    border: 0;
+    background-color: transparent;
     cursor: pointer;
-    width: 100%;
-    padding: .6rem 0;
-    border-radius: .5rem;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--white);
-    font-size: 1.2rem;
-    outline: none;
+}
+
+.form .oauth-group .oauth-button .naver-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
+}
+
+.form .oauth-group .oauth-button .google-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
+}
+
+.form .oauth-group .oauth-button .kakao-login-button {
+    all: unset;
+    width: 50px;
+    height: auto;
+    max-width: 100%;
 }
 
 /* RESPONSIVE */

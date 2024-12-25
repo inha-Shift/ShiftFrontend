@@ -1,6 +1,19 @@
+:root {
+    --red: #9e1616;
+    --green: #2e9f37;
+}
+
 .pointer {
     cursor: pointer;
 }
 .pointer:hover {
     text-decoration: underline;
+}
+
+.text-warning {
+    color: var(--red);
+}
+
+.text-success {
+    color: var(--green);
 }
