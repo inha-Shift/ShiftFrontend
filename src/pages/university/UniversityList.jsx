@@ -4,11 +4,6 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
-import gachon from '../../assets/image/univLogo/gachon.jpeg';
-import catholic from '../../assets/image/univLogo/catholic.jpg';
-import konkuk from '../../assets/image/univLogo/konkuk.png';
-import kyunghee from '../../assets/image/univLogo/kyunghee.png';
-
 const Card = ({ logo, name, department }) => (
     <div className="univ_list-card">
         <img src={logo} alt="School Logo" />
@@ -23,7 +18,7 @@ const CardGrid = () => {
     const [homeData, setHomeData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newCard, setNewCard] = useState({ logo: '', name: '', department: '' });
-    
+
     useEffect(() => {
         // 사용자가 /home으로 들어왔을 때 데이터 가져오기
         axios.get('/api/univ/list')
@@ -51,12 +46,12 @@ const CardGrid = () => {
                 univName: newCard.name,
                 univDept: newCard.department,
             };
-    
+
             // 서버에 새 데이터 추가
             await axios.post(reqestURL, newCardData, {
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json; charset=UTF-8'}
             });
-    
+
             // 요청 성공: 상태 업데이트
             setCards((prevCards) => [
                 ...prevCards,
@@ -66,11 +61,11 @@ const CardGrid = () => {
                     department: newCard.department,
                 },
             ]);
-    
+
             // 상태 초기화
             setIsModalOpen(false);
             setNewCard({ logo: '', name: '', department: '' });
-    
+
             // 성공 메시지
             toast.success('새 학교 정보가 성공적으로 추가되었습니다!');
         } catch (error) {
@@ -86,18 +81,28 @@ const CardGrid = () => {
                 {cards.map((card, index) => (
                     <Card key={index} logo={card.logo} name={card.name} department={card.department} />
                 ))}
-            <button className="add-card-button" onClick={() => setIsModalOpen(true)}>Add Card</button>
+                <button className="add-card-button" onClick={() => setIsModalOpen(true)}>Add Card</button>
             </div>
 
             {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
                         <h2>Add New Card</h2>
+                        {newCard.logo && <img src={newCard.logo} alt="Preview" className="image-preview" />}
                         <input
-                            type="text"
-                            placeholder="Logo URL"
-                            value={newCard.logo}
-                            onChange={(e) => setNewCard({ ...newCard, logo: e.target.value })}
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                const file = e.target.files[0]; // 선택된 파일 가져오기
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                        // Base64 URL 생성 후 상태에 저장
+                                        setNewCard({ ...newCard, logo: reader.result });
+                                    };
+                                    reader.readAsDataURL(file); // 이미지를 Base64로 읽기
+                                }
+                            }}
                         />
                         <input
                             type="text"

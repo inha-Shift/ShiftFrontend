@@ -126,3 +126,10 @@ html, body {
     background-color: #ddd;
     color: black;
 }
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-top: 10px;
+}
