@@ -7,6 +7,8 @@ import 'assets/stylesheets/auth.css';
 import 'assets/stylesheets/common.css';
 import 'assets/stylesheets/univList.css';
 import 'assets/stylesheets/univInfo.css';
+import 'assets/stylesheets/university/taps/infomation.css';
+import 'assets/stylesheets/university/taps/recruitGuide.css';
 import URL from 'utils/url';
 
 import Main from 'pages/home/Main';
