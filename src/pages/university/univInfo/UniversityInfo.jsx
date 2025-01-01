@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import RecruitGuide from "./taps/RecruitGuide";
 import Infomation from "./taps/Infomation";
+import FreeBoard from "./taps/FreeBoard";
 
 const UniversityInfo = () => {
     const [activeTab, setActiveTab] = useState("학교정보"); // 기본 탭: 학교정보
@@ -130,7 +131,10 @@ const UniversityInfo = () => {
                         )
                     )}
                     {activeTab === "커리큘럼" && <div>Contact Us Page!</div>}
-                    {activeTab === "자유게시판" && <div>Portfolio Page is Here!</div>}
+                    {activeTab === "자유게시판" && (
+                        <FreeBoard />
+                    )
+                    }
                     {activeTab === "Q&A" && <div>Blog Page Loaded!</div>}
                 </div>
             </div>

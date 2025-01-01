@@ -5,17 +5,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import 'assets/stylesheets/auth.css';
 import 'assets/stylesheets/common.css';
-import 'assets/stylesheets/univList.css';
-import 'assets/stylesheets/univInfo.css';
-import 'assets/stylesheets/university/taps/infomation.css';
-import 'assets/stylesheets/university/taps/recruitGuide.css';
+import 'assets/stylesheets/university/univList/univList.css';
+import 'assets/stylesheets/university/univInfo/univInfo.css';
+import 'assets/stylesheets/university/univInfo/taps/infomation.css';
+import 'assets/stylesheets/university/univInfo/taps/recruitGuide.css';
+import 'assets/stylesheets/university/univInfo/taps/freeBoard.css';
 import URL from 'utils/url';
 
 import Main from 'pages/home/Main';
 import Login from 'pages/auth/Login';
 import OAuthAdditionalInfo from 'pages/auth/OAuthAdditionalInfo';
-import UnivList from 'pages/university/UniversityList';
-import UnivInfo from 'pages/university/UniversityInfo';
+import UnivList from 'pages/university/univList/UniversityList';
+import UnivInfo from 'pages/university/univInfo/UniversityInfo';
 
 function App() {
   return (

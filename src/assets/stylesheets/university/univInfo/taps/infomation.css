@@ -8,8 +8,8 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     width: 100%;
-    max-width: 1200px;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -93,6 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000; /* 오버레이 z-index */
 }
 
 /* 모달 창 */
@@ -103,6 +104,7 @@
     width: 90%;
     max-width: 600px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* 모달 z-index */
 }
 
 /* 탭 스타일 */
@@ -136,46 +138,6 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-}
-
-/* 추가 정보 입력 컨테이너 */
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-/* 입력 필드 스타일 */
-.info-item input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.info-item input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    outline: none;
-}
-
-/* 삭제 버튼 스타일 */
-.info-item button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #dc3545;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.info-item button:hover {
-    background-color: #c82333;
 }
 
 /* 정보 추가 버튼 */
@@ -216,6 +178,46 @@
 .modal-buttons button:hover {
     background-color: #0056b3;
 }
+/* 추가 정보 입력 컨테이너 */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* 입력 필드 스타일 */
+.info-item input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.info-item input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* 삭제 버튼 스타일 */
+.info-item button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.info-item button:hover {
+    background-color: #c82333;
+}
+
 
 /* 일반 정보, 지도 정보 입력 필드 컨테이너 */
 .general-info, .extra-info, .map-info {

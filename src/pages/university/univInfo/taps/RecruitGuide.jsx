@@ -5,7 +5,7 @@ const RecruitGuide = ({ recruitGuide, fetchRecruitGuide, univSq }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newDepartment, setNewDepartment] = useState({
         deptName: "",
-        field: "",
+        programType: "",
         recruitNum: 0,
         method: "",
         addInfo: ""
@@ -67,7 +67,7 @@ const RecruitGuide = ({ recruitGuide, fetchRecruitGuide, univSq }) => {
                         recruitGuide.departments.map((dept) => (
                             <tr key={dept.deptSq}>
                                 <th scope="row">{dept.deptName}</th>
-                                <td>{dept.field}</td>
+                                <td>{dept.programType}</td>
                                 <td>{dept.recruitNum}</td>
                                 <td>{dept.method}</td>
                                 <td>{dept.addInfo}</td>
@@ -103,8 +103,8 @@ const RecruitGuide = ({ recruitGuide, fetchRecruitGuide, univSq }) => {
                             계열:
                             <input
                                 type="text"
-                                name="field"
-                                value={newDepartment.field}
+                                name="programType"
+                                value={newDepartment.programType}
                                 onChange={handleInputChange}
                             />
                         </label>

@@ -1,0 +1,103 @@
+/* 전체 스타일 */
+.freeboard {
+    padding: 20px;
+    color: #333333; /* 기본 텍스트 색상 */
+    min-height: 100vh;
+    border-radius: 8px; /* 모서리 둥글게 */
+}
+
+/* 제목 컨테이너 */
+.freeboard-title-container {
+    display: flex;
+    justify-content: center; /* 제목을 가로로 중앙 정렬 */
+    align-items: center; /* 제목을 세로로 중앙 정렬 */
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.freeboard-title-container h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 글쓰기 버튼 컨테이너 */
+.freeboard-write-btn-container {
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽 정렬 */
+    margin-bottom: 20px;
+}
+
+.freeboard-btn-primary {
+    background-color: #4ea685; /* 녹색 계열 버튼 */
+    color: #ffffff; /* 버튼 텍스트 흰색 */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.freeboard-btn-primary:hover {
+    background-color: #3b8c6e; /* 버튼 호버 시 더 어두운 녹색 */
+}
+
+/* 게시판 리스트 */
+.freeboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 카드 스타일 */
+.freeboard-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* 밝은 흰색 카드 */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
+    color: #333333; /* 카드 내부 텍스트 색상 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* 부드러운 애니메이션 */
+}
+
+.freeboard-card:hover {
+    transform: scale(1.03); /* 약간 확대 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 커졌을 때 더 진한 그림자 */
+    cursor: pointer; /* 손가락 모양 커서 */
+}
+
+.freeboard-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.freeboard-category {
+    font-size: 0.9rem;
+    color: #888888; /* 연한 회색 */
+    margin-bottom: 8px;
+}
+
+.freeboard-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333333; /* 제목 어두운 회색 */
+}
+
+.freeboard-info {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #666666; /* 회색 텍스트 */
+}
+
+.freeboard-likes,
+.freeboard-comments,
+.freeboard-date,
+.freeboard-author {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666666; /* 정보 텍스트 */
+}

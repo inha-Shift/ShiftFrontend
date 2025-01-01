@@ -16,27 +16,30 @@
   width: 25%;
   min-height: 700px;
   background-color: #f5f5f5;
-  /* 밝은 회색으로 변경 */
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* 그림자 강조 */
   color: #333333;
-  /* 짙은 회색 텍스트 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* 상단 정렬 */
+  position: relative; /* 이미지 정렬을 위한 기준 */
 }
 
 /* 로고 스타일 */
 .nav-logo {
   margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-logo img {
-  height: 150px;
+  max-width: 100%; /* 이미지가 박스를 넘지 않도록 설정 */
+  max-height: 150px; /* 최대 높이 설정 */
   border-radius: 10px;
+  object-fit: contain; /* 이미지 비율 유지 */
 }
 
 /* 대학교 이름 스타일 */

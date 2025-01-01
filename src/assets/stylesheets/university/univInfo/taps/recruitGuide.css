@@ -46,7 +46,7 @@
   
   .responsive-table caption {
     margin-bottom: 1em;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
     text-align: center;
   }
@@ -104,11 +104,7 @@
       display: table-cell;
       padding: .5em;
     }
-  
-    .responsive-table caption {
-      font-size: 1.5em;
-    }
-  
+
     .responsive-table tbody {
       display: table-row-group;
     }
