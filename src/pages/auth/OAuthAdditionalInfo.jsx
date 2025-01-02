@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { generateNickname } from './Login';
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
 
 import nicknameData from "assets/jsons/nicknameData.json";
@@ -145,7 +147,10 @@ export default function OAuthAdditionalInfo() {
                 }
             )
             .catch( // 회원가입 실패
-                (err) => { console.error('회원가입에 실패했습니다.', err); }
+                (err) => { 
+                    toast.error(err);
+                    console.error('회원가입에 실패했습니다.', err);
+                 }
             )
     }, [signUpData]);
 

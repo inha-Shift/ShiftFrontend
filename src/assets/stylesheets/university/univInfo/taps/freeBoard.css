@@ -87,9 +87,11 @@
 
 .freeboard-info {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-end; /* 세로 정렬 */
+    gap: 10px; /* 각 요소 간 간격 */
     font-size: 0.9rem;
-    color: #666666; /* 회색 텍스트 */
+    color: #666666; /* 텍스트 색상 */
 }
 
 .freeboard-likes,
@@ -101,3 +103,177 @@
     gap: 4px;
     color: #666666; /* 정보 텍스트 */
 }
+
+/* 글쓰기 박스 */
+.write-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background-color: #ffffff; /* 흰색 배경 */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    margin-bottom: 20px;
+}
+
+.write-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: none; /* 크기 조정 비활성화 */
+    outline: none;
+}
+
+.write-textarea:focus {
+    border-color: #4ea685; /* 포커스 시 녹색 테두리 */
+}
+
+.submit-btn {
+    align-self: flex-end; /* 버튼을 오른쪽 정렬 */
+    padding: 8px 16px;
+    background-color: #4ea685;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #3b8c6e;
+}
+
+/* 댓글 입력 컨테이너 */
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* 연한 배경 */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  }
+  
+  /* 댓글 입력 필드 */
+  .comment-input {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    resize: none; /* 크기 조정 비활성화 */
+    outline: none;
+    font-family: inherit; /* 부모 폰트 상속 */
+  }
+  
+  .comment-input:focus {
+    border-color: #4ea685; /* 포커스 시 테두리 색 변경 */
+    box-shadow: 0 0 4px rgba(78, 166, 133, 0.5); /* 포커스 시 그림자 */
+  }
+  
+  /* 댓글 작성 버튼 */
+  .freeboard-btn-primary {
+    align-self: flex-end; /* 버튼을 오른쪽 정렬 */
+    padding: 8px 16px;
+    background-color: #4ea685;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .freeboard-btn-primary:hover {
+    background-color: #3b8c6e; /* 호버 시 버튼 색 변경 */
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+    font-family: 'Inter', sans-serif; /* 심플하고 모던한 폰트 */
+  }
+  
+  .pagination-btn {
+    background-color: #007bff; /* 모던한 파란색 */
+    color: white;
+    border: none;
+    border-radius: 50%; /* 둥근 버튼 */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .pagination-btn:hover {
+    background-color: #0056b3; /* 호버 시 더 어두운 파란색 */
+    transform: scale(1.1); /* 버튼 확대 효과 */
+  }
+  
+  .pagination-btn:disabled {
+    background-color: #cccccc; /* 비활성화된 버튼 색상 */
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .pagination-info {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .freeboard-actions {
+    position: absolute; /* 절대 위치 */
+    top: 10px; /* 카드의 상단 여백 */
+    right: 10px; /* 카드의 오른쪽 여백 */
+    display: flex;
+    gap: 8px;
+}
+
+.freeboard-card {
+    position: relative; /* 부모 요소가 위치 기준이 되도록 설정 */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* 밝은 흰색 카드 */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
+    color: #333333; /* 카드 내부 텍스트 색상 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* 부드러운 애니메이션 */
+}
+
+  .freeboard-btn-secondary {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .freeboard-btn-danger {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .freeboard-btn-secondary:hover,
+  .freeboard-btn-danger:hover {
+    opacity: 0.8;
+  }

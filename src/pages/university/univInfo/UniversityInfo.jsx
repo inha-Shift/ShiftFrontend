@@ -10,6 +10,7 @@ const UniversityInfo = () => {
     const [activeTab, setActiveTab] = useState("학교정보"); // 기본 탭: 학교정보
     const [university, setUniversity] = useState(null);
     const [recruitGuide, setRecruitGuide] = useState(null); // 모집요강 데이터 상태 추가
+    const [posts, setPosts] = useState(null); // 서버에서 가져온 게시글 데이터
     const { sq } = useParams();
 
     const fetchUniversityInfo = useCallback(() => {
@@ -34,6 +35,18 @@ const UniversityInfo = () => {
             });
     }, [sq]);
 
+    // const fetchFreeBoard = useCallback(() => {
+    //     axios.get(`/api/univ/board/${sq}/posts`)
+    //         .then((res) => {
+    //             console.log(res.data);
+    //             setPosts(res.data);
+    //         })
+    //         .catch((err) => {
+    //             console.error("Error fetching recruit guide:", err);
+    //             alert("게시판 정보를 가져오는데 실패했습니다.");
+    //         });
+    // }, [sq]);
+
     useEffect(() => {
         fetchUniversityInfo(); // 초기 로드 시 학교 정보 로드
     }, [fetchUniversityInfo]);
@@ -48,6 +61,9 @@ const UniversityInfo = () => {
         else if (tab === "학교정보" && !university) {
             fetchUniversityInfo();
         }
+        // else if (tab === "자유게시판" && !posts) {
+        //     fetchFreeBoard();
+        // }
     };
 
     if (!university) {
@@ -132,7 +148,11 @@ const UniversityInfo = () => {
                     )}
                     {activeTab === "커리큘럼" && <div>Contact Us Page!</div>}
                     {activeTab === "자유게시판" && (
-                        <FreeBoard />
+                        <FreeBoard
+                            univSq={sq}
+                            // posts={posts}
+                            // fetchFreeBoard={fetchFreeBoard}
+                        />
                     )
                     }
                     {activeTab === "Q&A" && <div>Blog Page Loaded!</div>}
